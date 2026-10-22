@@ -64,6 +64,29 @@ handling are stored in the `data_quality_cases` table.
 
 Homework 2 also requires Docker with Compose. Follow the assignment for starting Langfuse and the server, configuring content capture, and verifying the exported spans. The local Langfuse settings are supplied in `.env.example`, and no Langfuse Cloud account is required.
 
+### Terminal chat for the HTTP endpoint
+
+Use `scripts/chat.py` to test the Homework 2 server without copying session IDs or tokens into `curl` commands. Complete the setup above first, including a seeded database and a model provider key in `.env`. Run both commands below from the repository root.
+
+In terminal 1, start the server:
+
+```bash
+uv run uvicorn server.app:app --port 8010
+```
+
+In terminal 2, start the chat:
+
+```bash
+uv run python -m scripts.chat
+```
+
+Choose a role by number (`1` shopper, `2` merchant, `3` support) or by name, then enter a user ID with that role. Seeded examples are shopper `1`, merchant `9002`, and support `9501`. A role that does not match the user ID is rejected by the server. Type a message at `you ›` to chat; for example, shopper `1` can ask `I would like to check my order 4127`.
+
+- `/signout` leaves the current chat and prompts for another role and user ID. The next sign-in creates a new session.
+- `/quit` exits the chat.
+
+The client shows the session ID so you can find its traces, keeps the token in memory, and adds it to each message request automatically. It connects to `http://localhost:8010`. For Langfuse traces, start the tracing services as described in [Homework 2](homework/module-1/hw2.md).
+
 ## Repo map
 
 ```
@@ -88,6 +111,7 @@ agent/                    support agent scaffold
   cli.py                  chat shell; optional approval flow completed in Module 4
 server/
   app.py                  HOMEWORK 2: session + message routes; token helpers provided
+scripts/chat.py            terminal chat client for the HTTP endpoint
 observability/
   docker-compose.yml      self-hosted Langfuse (web, worker, postgres, clickhouse, redis, minio)
   instrument.py           tracing setup (provided) + HOMEWORK 2: tool span attributes
