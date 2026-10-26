@@ -1,0 +1,95 @@
+    ┌─scenario_id────────┬─traces─┐
+ 1. │ pilot-017          │      6 │
+ 2. │ pilot-015          │      5 │
+ 3. │ pilot-002          │      5 │
+ 4. │ pilot-006          │      5 │
+ 5. │ pilot-003          │      5 │
+ 6. │ pilot-008          │      5 │
+ 7. │ pilot-018          │      4 │
+ 8. │ pilot-007          │      4 │
+ 9. │ pilot-019          │      4 │
+10. │ pilot-012          │      4 │
+11. │ pilot-010          │      4 │
+12. │ pilot-005          │      4 │
+13. │ pilot-014          │      4 │
+14. │ pilot-011          │      4 │
+15. │ pilot-004          │      4 │
+16. │ pilot-016          │      4 │
+17. │ pilot-009          │      4 │
+18. │ pilot-013          │      4 │
+19. │ pilot-001          │      4 │
+20. │ pilot-021          │      3 │
+21. │ pilot-020          │      3 │
+22. │ support-0218       │      2 │
+23. │ support-0219       │      2 │
+24. │ support-0208       │      2 │
+25. │ pilot-027          │      2 │
+26. │ pilot-024          │      2 │
+27. │ support-0223       │      2 │
+28. │ pilot-025          │      2 │
+29. │ support-0214       │      2 │
+30. │ support-0216       │      2 │
+31. │ pilot-026          │      2 │
+32. │ support-0210       │      2 │
+33. │ support-0222       │      2 │
+34. │ support-0221       │      2 │
+35. │ support-0220       │      2 │
+36. │ pilot-030          │      2 │
+37. │ pilot-029          │      2 │
+38. │ pilot-022          │      2 │
+39. │ support-0206       │      2 │
+40. │ support-0217       │      2 │
+41. │ pilot-028          │      2 │
+42. │ hw3-smoke-20261024 │      2 │
+43. │ support-0212       │      2 │
+44. │ pilot-023          │      2 │
+45. │ support-0197       │      1 │
+46. │ support-0176       │      1 │
+47. │ support-0094       │      1 │
+48. │ support-0086       │      1 │
+49. │ support-0056       │      1 │
+50. │ support-0155       │      1 │
+    └─scenario_id────────┴─traces─┘
+   ┌─role─────┬─traces─┐
+1. │ shopper  │    184 │
+2. │ merchant │    113 │
+3. │ support  │     91 │
+4. │          │      2 │
+   └──────────┴────────┘
+   ┌─name──────────────────────┬─errors─┐
+1. │ openai.response           │     43 │
+2. │ cartwheel.session_message │     43 │
+3. │ list_my_orders            │      2 │
+   └───────────────────────────┴────────┘
+   ┌─escalations─┐
+1. │          24 │
+   └─────────────┘
+   ┌─input_tokens─┬─output_tokens─┬─────total_cost─┐
+1. │       635677 │         44891 │ 0.127873349923 │
+   └──────────────┴───────────────┴────────────────┘
+    ┌─trace_id─────────────────────────┬─spans─┬─duration_ms─┐
+ 1. │ 3aab449c4670dc72c9b6ee4fd4122317 │    10 │        5475 │
+ 2. │ c1d78a61194e32a685d7e88efbca8ffc │    10 │        5285 │
+ 3. │ 61db51afd38706a80d9e16ffa665347a │    10 │        6870 │
+ 4. │ 0e34b25f2b75d381dcf21c195b939814 │    10 │        6534 │
+ 5. │ f9e7e990aafd6aeba40084eb06c2c223 │    10 │        6554 │
+ 6. │ c1586cc507fb1fa8e5ec06fde5e762ee │    10 │        6444 │
+ 7. │ e585ff5d07dd30e3959c6721fa243352 │    10 │        5871 │
+ 8. │ cbf4c6b929b4034ba2039d8253f9bf61 │    10 │        6204 │
+ 9. │ 9a4ad124a622072b9e5bc29231cc5841 │    10 │        7143 │
+10. │ c858e49c8ed48c978ff2853e6a8feba9 │    10 │        6223 │
+    └──────────────────────────────────┴───────┴─────────────┘
+   ┌─name───────────────┬─calls─┐
+1. │ get_order          │   194 │
+2. │ search_products    │    46 │
+3. │ search_help_center │    36 │
+4. │ escalate_to_human  │    24 │
+5. │ issue_refund       │    22 │
+6. │ list_my_orders     │    16 │
+7. │ find_order         │    14 │
+8. │ cancel_order       │    11 │
+9. │ get_policy         │     2 │
+   └────────────────────┴───────┘
+   ┌─permission_denials─┐
+1. │                 15 │
+   └────────────────────┘
