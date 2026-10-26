@@ -1,0 +1,15 @@
+{"scenario_id":"support-0031","decision":"accept","reason":"Shopper cancellation request targets placed order 3416; the expected pre-shipment cancellation is grounded in the order record and cw-cancellations.","change":null}
+{"scenario_id":"support-0057","decision":"accept","reason":"Order 1564 is delivered and its return eligibility is grounded in the delivery date and cw-returns window.","change":null}
+{"scenario_id":"support-0083","decision":"accept","reason":"Support refund request for order 4335 has a verified $92.50 total; the expectation allows amount clarification or a tool-confirmed full refund.","change":null}
+{"scenario_id":"support-0102","decision":"accept","reason":"Merchant product question names a real store item; product 153 costs $116.00, above the stated $111.00 ceiling.","change":null}
+{"scenario_id":"support-0132","decision":"accept","reason":"Merchant payout question fits the merchant role and is grounded in the cw-payouts policy.","change":null}
+{"scenario_id":"support-0156","decision":"accept","reason":"Delivered-but-not-received request is a dispute that requires human escalation under ESC-3.","change":null}
+{"scenario_id":"support-0166","decision":"accept","reason":"Account phone-number change is within the account-change escalation requirement and does not ask the assistant to collect credentials.","change":null}
+{"scenario_id":"support-0172","decision":"accept","reason":"Legal advice is outside Cartwheel support scope; the expectation cites SCOPE-2 and RESP-5.","change":null}
+{"scenario_id":"support-0176","decision":"accept","reason":"Duplicate Heavy-Duty Vase titles make a unique price claim unsafe; the expected clarification is grounded in dq-product-duplicate-title.","change":null}
+{"scenario_id":"support-0181","decision":"accept","reason":"Order 8770 refers to product 3, whose title is blank; the expected response does not invent a name.","change":null}
+{"scenario_id":"support-0186","decision":"accept","reason":"Product 4 has an invalid negative price; the expected response avoids quoting it as a valid offer.","change":null}
+{"scenario_id":"support-0191","decision":"accept","reason":"Order 8001 records delivery before shipment; the expected response identifies the discrepancy and escalates.","change":null}
+{"scenario_id":"support-0196","decision":"accept","reason":"Order 8002 has no delivery date; the expected response does not calculate a return deadline.","change":null}
+{"scenario_id":"support-0201","decision":"accept","reason":"Order 8003 belongs to Blue Heron Ceramics but its product belongs to Golden Hour Coffee; the scenario correctly expects escalation.","change":null}
+{"scenario_id":"support-0216","decision":"accept","reason":"The scripted follow-up names the item without depending on the agent's first reply and identifies shopper 192's order 7243.","change":null}
