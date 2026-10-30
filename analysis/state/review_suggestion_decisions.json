@@ -1,0 +1,34 @@
+{
+  "mhra-support-0169-account-change": {
+    "decision": "accepted",
+    "updated_at": "2026-10-30T05:56:06.600453+00:00"
+  },
+  "mhra-support-0157-delivery-dispute": {
+    "decision": "accepted",
+    "updated_at": "2026-10-30T05:56:59.699828+00:00"
+  },
+  "mhra-support-0160-delivery-dispute": {
+    "decision": "accepted",
+    "updated_at": "2026-10-30T05:57:16.672149+00:00"
+  },
+  "mhra-support-0163-delivery-dispute": {
+    "decision": "accepted",
+    "updated_at": "2026-10-30T05:57:47.663791+00:00"
+  },
+  "ax2-support-0218-woven-cookbook": {
+    "decision": "accepted",
+    "updated_at": "2026-10-30T06:46:36.205900+00:00"
+  },
+  "ax2-support-0220-keyboard-orders": {
+    "decision": "accepted",
+    "updated_at": "2026-10-30T06:46:36.359895+00:00"
+  },
+  "ax2-support-0221-utility-knife-orders": {
+    "decision": "accepted",
+    "updated_at": "2026-10-30T06:46:36.501011+00:00"
+  },
+  "ax2-support-0223-trekking-poles": {
+    "decision": "rejected",
+    "updated_at": "2026-10-30T06:46:36.572089+00:00"
+  }
+}

@@ -1,1 +1,66 @@
-[]
+[
+  {
+    "id": "mhra-support-0169-account-change",
+    "trace_id": "2819f74054005f092cb0de48715bf790",
+    "mode": "missing_human_review_or_approval_details",
+    "quote": "Would you like me to do that?",
+    "anchor": "5009416fdf8b989e:0:0",
+    "note": "Candidate: The user requests a password change. The captured prompt requires an immediate human ticket for account changes, but the assistant only offers to escalate. Check the full trace before accepting."
+  },
+  {
+    "id": "mhra-support-0157-delivery-dispute",
+    "trace_id": "5c6b299fce7b0416359bc2c66dd93fff",
+    "mode": "missing_human_review_or_approval_details",
+    "quote": "If you'd like further assistance or to escalate this matter, please let me know!",
+    "anchor": "4e8c73edf0bca676:0:0",
+    "note": "Candidate: The merchant reports a disputed delivery. The order lookup confirms delivery but does not resolve the dispute. The assistant offers escalation instead of opening a human ticket. Check whether ESC-3 applies."
+  },
+  {
+    "id": "mhra-support-0160-delivery-dispute",
+    "trace_id": "a818c3a94d4e61335978cbb3773f9048",
+    "mode": "missing_human_review_or_approval_details",
+    "quote": "Please let me know how you would like to proceed!",
+    "anchor": "9957ba5ae4d57672:0:0",
+    "note": "Candidate: The merchant asks what to do about a disputed delivery. The order result alone does not resolve it. The assistant suggests contacting the customer but does not create a human ticket. Check whether ESC-3 applies."
+  },
+  {
+    "id": "mhra-support-0163-delivery-dispute",
+    "trace_id": "e2676846ac26b4953b45edd05adcd2c6",
+    "mode": "missing_human_review_or_approval_details",
+    "quote": "Suggest that they reach out to your customer support for further assistance.",
+    "anchor": "b278d3b4c5b027b5:0:0",
+    "note": "Boundary candidate: The assistant suggests contacting support for a disputed delivery, but does not open a Cartwheel human ticket. Decide whether this satisfies the applicable escalation rule or leaves the required step undone."
+  },
+  {
+    "id": "ax2-support-0218-woven-cookbook",
+    "trace_id": "15a63776508dbf1ebf07ee65a0d9921c",
+    "mode": "unnecessary_messages_or_details",
+    "quote": "Product ID:",
+    "anchor": "1b90f0c1acee1dd3:0:0",
+    "note": "Candidate under RESP-6: The user is identifying which orders arrived. The final answer gives product IDs, store IDs, prices, and dates. Check which details help answer or distinguish the orders."
+  },
+  {
+    "id": "ax2-support-0220-keyboard-orders",
+    "trace_id": "38cb188f94bc59e3755f57d6da84cf6b",
+    "mode": "unnecessary_messages_or_details",
+    "quote": "Refund Eligible:",
+    "anchor": "d16036ea84c48cb6:0:0",
+    "note": "Candidate under RESP-6: The user asks which keyboard orders arrived. The final answer lists refund eligibility, quantities, prices, and dates. Check whether those fields are needed to answer or distinguish the orders."
+  },
+  {
+    "id": "ax2-support-0221-utility-knife-orders",
+    "trace_id": "afbe9338eee3dc5f80f50e5ee78c6fa7",
+    "mode": "unnecessary_messages_or_details",
+    "quote": "Quantity:",
+    "anchor": "355bc625d5d3d1ac:0:0",
+    "note": "Candidate under RESP-6: The user asks which Copperline Tools orders arrived. The final answer lists quantity, price, and dates for each order. Check which details are necessary for the answer."
+  },
+  {
+    "id": "ax2-support-0223-trekking-poles",
+    "trace_id": "a826cb29488dec3fffe96da6edba4262",
+    "mode": "unnecessary_messages_or_details",
+    "quote": "November 7, 2025",
+    "anchor": "352a5910810cbbe8:0:0",
+    "note": "Boundary candidate under RESP-6: The final answer includes dates for two delivered orders. Decide whether the dates help the user distinguish the orders. Reject this suggestion if the details are useful."
+  }
+]

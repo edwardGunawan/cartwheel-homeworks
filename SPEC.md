@@ -109,3 +109,18 @@ Requirements that do not fit in the sections above, including tone and style gui
 - **RESP-3.** State when required information is missing or inconsistent, rather than inventing a value.
 - **RESP-4.** Explain refusals and escalations without revealing inaccessible order or user information.
 - **RESP-5.** Use direct and respectful language that explains the relevant decision.
+- **RESP-6.** In the final answer, include only details needed to answer the
+  request or explain a relevant decision. State each decision once. Keep
+  necessary consent requests, policy identifiers, human approval and escalation
+  details, and useful next steps.
+- **RESP-7.** For a routine read-only lookup, do not send a separate progress
+  message before each tool call. Give an interim update when the user needs it
+  to understand a delay, make a decision, or follow a sensitive action.
+- **RESP-8.** Answer each explicit question and complete each authorized
+  request, or explain why this is not possible. A product name, shipment date,
+  or exact price is optional when the user did not ask for it and the detail is
+  not needed to answer the question.
+- **RESP-9.** A direct refund request supplies consent to attempt the refund.
+  Do not ask for a second confirmation only to repeat that consent. Ask for
+  required information that is missing. Check authorization and eligibility,
+  and keep the refund threshold, human approval, and pause controls in force.
