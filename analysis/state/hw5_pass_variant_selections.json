@@ -1,0 +1,576 @@
+{
+  "mode": "unnecessary_messages_or_details",
+  "approved_pass_variant_groups": [
+    {
+      "group": "G001",
+      "keep": "support-0217",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0216",
+        "support-0222",
+        "support-0223"
+      ]
+    },
+    {
+      "group": "G002",
+      "keep": "support-0011",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0014",
+        "support-0020"
+      ]
+    },
+    {
+      "group": "G003",
+      "keep": "support-0005",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0002"
+      ]
+    },
+    {
+      "group": "G005",
+      "keep": "support-0012",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0018"
+      ]
+    },
+    {
+      "group": "G006",
+      "keep": "support-0019",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0013",
+        "support-0016"
+      ]
+    },
+    {
+      "group": "G007",
+      "keep": "support-0157",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0160"
+      ]
+    },
+    {
+      "group": "G008",
+      "keep": "support-0024",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0021"
+      ]
+    },
+    {
+      "group": "G010",
+      "keep": "support-0050",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0047"
+      ]
+    },
+    {
+      "group": "G011",
+      "keep": "support-0150",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0126"
+      ]
+    },
+    {
+      "group": "G012",
+      "keep": "support-0130",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0154"
+      ]
+    },
+    {
+      "group": "G013",
+      "keep": "support-0131",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0155"
+      ]
+    },
+    {
+      "group": "G014",
+      "keep": "support-0181",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0184"
+      ]
+    },
+    {
+      "group": "G015",
+      "keep": "support-0191",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0194"
+      ]
+    },
+    {
+      "group": "G017",
+      "keep": "support-0101",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0104",
+        "support-0107",
+        "support-0110",
+        "support-0113",
+        "support-0116",
+        "support-0119",
+        "support-0122",
+        "support-0125"
+      ]
+    },
+    {
+      "group": "G018",
+      "keep": "support-0102",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0105",
+        "support-0108",
+        "support-0111",
+        "support-0114",
+        "support-0117",
+        "support-0120",
+        "support-0123"
+      ]
+    },
+    {
+      "group": "G019",
+      "keep": "support-0103",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0106",
+        "support-0109",
+        "support-0112",
+        "support-0115",
+        "support-0118",
+        "support-0121",
+        "support-0124"
+      ]
+    },
+    {
+      "group": "G020",
+      "keep": "support-0031",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0034",
+        "support-0037",
+        "support-0040",
+        "support-0043"
+      ]
+    },
+    {
+      "group": "G021",
+      "keep": "support-0032",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0035",
+        "support-0038",
+        "support-0041",
+        "support-0044"
+      ]
+    },
+    {
+      "group": "G022",
+      "keep": "support-0033",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0036",
+        "support-0039",
+        "support-0042",
+        "support-0045"
+      ]
+    },
+    {
+      "group": "G023",
+      "keep": "support-0001",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0004",
+        "support-0007",
+        "support-0010"
+      ]
+    },
+    {
+      "group": "G024",
+      "keep": "support-0057",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0060",
+        "support-0061",
+        "support-0064"
+      ]
+    },
+    {
+      "group": "G025",
+      "keep": "support-0066",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0069",
+        "support-0071",
+        "support-0232"
+      ]
+    },
+    {
+      "group": "G026",
+      "keep": "support-0082",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0085",
+        "support-0088",
+        "support-0091"
+      ]
+    },
+    {
+      "group": "G027",
+      "keep": "support-0067",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0072",
+        "support-0228"
+      ]
+    },
+    {
+      "group": "G028",
+      "keep": "support-0068",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0070"
+      ]
+    },
+    {
+      "group": "G029",
+      "keep": "support-0073",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0076",
+        "support-0233"
+      ]
+    },
+    {
+      "group": "G030",
+      "keep": "support-0074",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0077",
+        "support-0229"
+      ]
+    },
+    {
+      "group": "G031",
+      "keep": "support-0081",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0084",
+        "support-0090"
+      ]
+    },
+    {
+      "group": "G032",
+      "keep": "support-0083",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0089",
+        "support-0092"
+      ]
+    },
+    {
+      "group": "G033",
+      "keep": "support-0093",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0096",
+        "support-0099"
+      ]
+    },
+    {
+      "group": "G034",
+      "keep": "support-0094",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0097",
+        "support-0100"
+      ]
+    },
+    {
+      "group": "G035",
+      "keep": "support-0156",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0159",
+        "support-0162"
+      ]
+    },
+    {
+      "group": "G036",
+      "keep": "support-0164",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0167",
+        "support-0170"
+      ]
+    },
+    {
+      "group": "G037",
+      "keep": "support-0165",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0168",
+        "support-0171"
+      ]
+    },
+    {
+      "group": "G038",
+      "keep": "support-0234",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0237",
+        "support-0240"
+      ]
+    },
+    {
+      "group": "G039",
+      "keep": "support-0025",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0022"
+      ]
+    },
+    {
+      "group": "G040",
+      "keep": "support-0027",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0030"
+      ]
+    },
+    {
+      "group": "G041",
+      "keep": "support-0046",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0049"
+      ]
+    },
+    {
+      "group": "G042",
+      "keep": "support-0051",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0054"
+      ]
+    },
+    {
+      "group": "G043",
+      "keep": "support-0052",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0055"
+      ]
+    },
+    {
+      "group": "G044",
+      "keep": "support-0056",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0063"
+      ]
+    },
+    {
+      "group": "G045",
+      "keep": "support-0058",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0062"
+      ]
+    },
+    {
+      "group": "G046",
+      "keep": "support-0075",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0225"
+      ]
+    },
+    {
+      "group": "G047",
+      "keep": "support-0078",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0226"
+      ]
+    },
+    {
+      "group": "G048",
+      "keep": "support-0080",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0231"
+      ]
+    },
+    {
+      "group": "G049",
+      "keep": "support-0095",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0098"
+      ]
+    },
+    {
+      "group": "G050",
+      "keep": "support-0127",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0151"
+      ]
+    },
+    {
+      "group": "G051",
+      "keep": "support-0128",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0152"
+      ]
+    },
+    {
+      "group": "G052",
+      "keep": "support-0129",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0153"
+      ]
+    },
+    {
+      "group": "G053",
+      "keep": "support-0158",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0161"
+      ]
+    },
+    {
+      "group": "G054",
+      "keep": "support-0166",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0169"
+      ]
+    },
+    {
+      "group": "G055",
+      "keep": "support-0172",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0175"
+      ]
+    },
+    {
+      "group": "G056",
+      "keep": "support-0176",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0179"
+      ]
+    },
+    {
+      "group": "G057",
+      "keep": "support-0178",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0180"
+      ]
+    },
+    {
+      "group": "G058",
+      "keep": "support-0183",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0185"
+      ]
+    },
+    {
+      "group": "G059",
+      "keep": "support-0186",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0189"
+      ]
+    },
+    {
+      "group": "G060",
+      "keep": "support-0188",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0190"
+      ]
+    },
+    {
+      "group": "G061",
+      "keep": "support-0192",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0195"
+      ]
+    },
+    {
+      "group": "G062",
+      "keep": "support-0199",
+      "keep_label": "Fail",
+      "exclude": [
+        "support-0196"
+      ]
+    },
+    {
+      "group": "G063",
+      "keep": "support-0197",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0200"
+      ]
+    },
+    {
+      "group": "G064",
+      "keep": "support-0201",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0204"
+      ]
+    },
+    {
+      "group": "G065",
+      "keep": "support-0235",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0238"
+      ]
+    },
+    {
+      "group": "G066",
+      "keep": "support-0236",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0239"
+      ]
+    },
+    {
+      "group": "G067",
+      "keep": "support-0241",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0244"
+      ]
+    },
+    {
+      "group": "G068",
+      "keep": "support-0242",
+      "keep_label": "Pass",
+      "exclude": [
+        "support-0245"
+      ]
+    }
+  ]
+}

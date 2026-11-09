@@ -2,7 +2,7 @@
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pretty = value => JSON.stringify(value, null, 2);
-let state, sessions = [], current, view = 'review', pendingNote, busy = false, lastState = '', requestQueue = Promise.resolve();
+let state, sessions = [], current, view = 'review', pendingNote, busy = false, lastState = '', requestQueue = Promise.resolve(), judgeDisagreementsOnly = false;
 const palette = ['#245d4f','#67599a','#b67b36','#537b9c','#ac596d','#778744','#977058','#3a8589'];
 const finalModes = () => state.patterns.filter(m => m.final === true || (m.final === undefined && m.status === 'final'));
 const judgment = (tid, mode) => state.judgments.find(j => j.trace_id === tid && j.mode === mode.name);
@@ -139,8 +139,22 @@ function renderLabels() {
   return head('Structured labeling', 'One explicit decision per trace and final mode. 1 = present · 0 = absent. Blank means unanswered.') +
   (!modes.length ? '<div class="panel">Finalize a mode in Taxonomy to begin labeling.</div>' : `<div class="panel table-wrap" style="max-height:none"><table><thead><tr><th>Trace / conversation</th>${modes.map(m => `<th title="${esc(m.definition)}">${esc(m.name)}</th>`).join('')}</tr></thead><tbody>${visible.map(t => `<tr><td><button data-jump="${esc(t.id)}">${esc(t.meta.scenario_id)} · ${esc(t.id.slice(0,8))}</button><p class="muted">${esc(t.user_text.slice(0,110))}</p></td>${modes.map(m => {
     const j = judgment(t.id,m), valid = complete(t.id,m);
-    return `<td class="judgment-cell"><div><button data-label="1" data-tid="${esc(t.id)}" data-mode="${esc(m.name)}" aria-pressed="${!!valid && j.label === 1}">Present</button> <button data-label="0" data-tid="${esc(t.id)}" data-mode="${esc(m.name)}" aria-pressed="${!!valid && j.label === 0}">Absent</button></div><span class="muted">${!j ? 'Unanswered' : !valid ? 'Definition changed — re-review' : j.sync === 'synced' ? 'Saved · synced' : 'Saved locally · sync pending'}</span><label>Evidence / comment<input class="judgment-note" data-comment="${esc(t.id + ':' + m.name)}" value="${esc(j?.note || '')}" placeholder="Saved with your decision"></label></td>`;
+    return `<td class="judgment-cell"><div><button data-label="1" data-tid="${esc(t.id)}" data-mode="${esc(m.name)}" aria-pressed="${j?.label === 1}">Present</button> <button data-label="0" data-tid="${esc(t.id)}" data-mode="${esc(m.name)}" aria-pressed="${j?.label === 0}">Absent</button></div><span class="muted">${!j ? 'Unanswered' : `Saved selection: ${j.label === 1 ? 'Present (Fail)' : 'Absent (Pass)'} · ${!valid ? 'Definition changed — re-review' : j.sync === 'synced' ? 'synced' : 'sync pending'}`}</span><label>Evidence / comment<input class="judgment-note" data-comment="${esc(t.id + ':' + m.name)}" value="${esc(j?.note || '')}" placeholder="Saved with your decision"></label>${j ? `<button data-label="${j.label}" data-tid="${esc(t.id)}" data-mode="${esc(m.name)}">Save comment</button>` : ''}</td>`;
   }).join('')}</tr>`).join('')}</tbody></table></div>`);
+}
+function renderJudge() {
+  const review = state.judge_review || {judge_id:null, expected:0, rows:[]};
+  if (!review.judge_id) return head('Judge review', 'Development results only.') + '<section class="panel">No development judge has been registered yet.</section>';
+  const disagreements = review.rows.filter(row => row.disagreement).length;
+  const rows = judgeDisagreementsOnly ? review.rows.filter(row => row.disagreement) : review.rows;
+  return head('Judge review', `${esc(review.judge_id)} · ${review.rows.length}/${review.expected} development traces scored · ${disagreements} disagreements`) +
+    `<section class="panel"><label class="check"><input id="judge-disagreements" type="checkbox" ${judgeDisagreementsOnly ? 'checked' : ''}> Show disagreements only</label><p class="muted">Compare the judge with your saved HW5 labels. Open a conversation to inspect the full evidence. This view never loads test predictions.</p></section>` +
+    (rows.map(row => {
+      const trace = state.traces.find(t => t.id === row.trace_id);
+      const human = row.human === 1 ? 'Pass' : 'Fail';
+      const judge = row.judge === 1 ? 'Pass' : 'Fail';
+      return `<article class="panel"><h2><button data-jump="${esc(row.trace_id)}">${esc(trace?.meta.scenario_id || row.trace_id)}</button> ${row.disagreement ? '<span class="pill">Disagreement</span>' : '<span class="pill">Agreement</span>'}</h2><div class="meta"><strong>Human: ${human}</strong><strong>Judge: ${judge}</strong></div><p class="annotatable"><strong>Judge critique:</strong> ${esc(row.critique || 'No critique saved.')}</p></article>`;
+    }).join('') || '<section class="panel">No matching development results.</section>');
 }
 function renderProgress() {
   const modes = finalModes(), n = state.traces.length, done = state.traces.filter(t => reviewed(t.id)).length;
@@ -162,7 +176,7 @@ function renderMap() {
 function render() {
   if (!state) return;
   document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
-  $('#main').innerHTML = ({review:renderReview,taxonomy:renderTaxonomy,labels:renderLabels,map:renderMap,progress:renderProgress})[view]();
+  $('#main').innerHTML = ({review:renderReview,taxonomy:renderTaxonomy,labels:renderLabels,judge:renderJudge,map:renderMap,progress:renderProgress})[view]();
   if (view === 'review') { renderNotes(); requestAnimationFrame(layoutNotes); }
 }
 function jump(tid, noteID) {
@@ -289,6 +303,7 @@ $('#note-dialog').addEventListener('close',clearPending);
 $('#note-form').addEventListener('submit',async event=>{event.preventDefault();try{await action({kind:'note',...pendingNote,note:$('#note-text').value});$('#note-dialog').close();}catch{}});
 $('#mode-form').addEventListener('submit',async event=>{event.preventDefault();const form=event.target;const mode=Object.fromEntries(new FormData(form));mode.final=form.elements.final.checked;try{await action({kind:'mode',mode});$('#mode-dialog').close();}catch{}});
 document.addEventListener('change',async event=>{
+  if(event.target.id==='judge-disagreements'){judgeDisagreementsOnly=event.target.checked;render();}
   if(event.target.id==='select-suggestions')document.querySelectorAll('[data-suggestion-select]').forEach(e=>e.checked=event.target.checked);
   if(event.target.dataset.linkNote){const n=state.annotations.find(n=>n.id===event.target.dataset.linkNote);try{await action({kind:'note',...n,mode:event.target.value});}catch{}}
 });

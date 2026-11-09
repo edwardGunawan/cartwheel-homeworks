@@ -5,7 +5,7 @@
       "title": "Unnecessary messages or details",
       "definition": "The agent's final answer repeats a decision or gives details that do not help answer the user's request or explain the decision.",
       "rationale": "These notes ask for less text. Remove words that do not help the user. Keep words that explain a necessary decision or next step.",
-      "boundary": "Do not count a message that the captured prompt requires before a tool call. Keep necessary consent, policy identifiers, approval and escalation details, and useful next steps. A repeated question that stops an action belongs to unanswered questions or unfinished requests. An unsupported statement belongs to claims without evidence or policy references.",
+      "boundary": "Do not count a message that the captured prompt requires before a tool call. Keep necessary consent, policy identifiers, approval and escalation details, and useful next steps. When a lookup fails or access is denied, a concise explanation of the blocker and a relevant clarification or next step are allowed; the missing answer alone is not this failure mode. A repeated question that stops an action belongs to unanswered questions or unfinished requests. An unsupported statement belongs to claims without evidence or policy references.",
       "include_when": [
         "The final answer repeats a decision.",
         "The final answer gives details that do not help answer the request or explain the decision."

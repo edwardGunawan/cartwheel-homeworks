@@ -1,0 +1,249 @@
+{
+  "mode": "unnecessary_messages_or_details",
+  "seed": 7,
+  "method": "Keep all Fail representatives except one seeded choice from shopper order-status cases (balancing the three roles). For Pass, choose one seeded case per intent, then sample the remaining cases with the same seed.",
+  "fail": [
+    {
+      "trace_id": "05124fbea627c902626a95a9ec9c0fd4",
+      "scenario_id": "support-0068"
+    },
+    {
+      "trace_id": "1315053300991a9e0c0ef08c7c920a25",
+      "scenario_id": "support-0005"
+    },
+    {
+      "trace_id": "29ca60cf88285c2cf541fddaa7b94bc9",
+      "scenario_id": "support-0248"
+    },
+    {
+      "trace_id": "4d41a4f1561a599d7c0d1cb1836171cd",
+      "scenario_id": "support-0003"
+    },
+    {
+      "trace_id": "4e9353fd844c11a2233fcbf00d4a99ec",
+      "scenario_id": "support-0131"
+    },
+    {
+      "trace_id": "51657ca88b2bdd5d7a2631861b98f8dd",
+      "scenario_id": "support-0050"
+    },
+    {
+      "trace_id": "51c843c72a42210307345480df81a8e0",
+      "scenario_id": "support-0150"
+    },
+    {
+      "trace_id": "524bd0ce423d867669bb0c2d0108095e",
+      "scenario_id": "support-0234"
+    },
+    {
+      "trace_id": "55f4064f9ba67840f7c780fa9fc3f577",
+      "scenario_id": "support-0026"
+    },
+    {
+      "trace_id": "5c6b299fce7b0416359bc2c66dd93fff",
+      "scenario_id": "support-0157"
+    },
+    {
+      "trace_id": "63f1b756062f86a7051b8ad5b4b393e5",
+      "scenario_id": "support-0143"
+    },
+    {
+      "trace_id": "64701a1ed25abb1b3707fa0354a8bdcc",
+      "scenario_id": "support-0019"
+    },
+    {
+      "trace_id": "70b757ba4855d0ea39a2e222eaa2eb25",
+      "scenario_id": "support-0202"
+    },
+    {
+      "trace_id": "71027de7d4a24485bcdf91f600e22d23",
+      "scenario_id": "support-0181"
+    },
+    {
+      "trace_id": "7eac3dc0af64b58f60027082f03f6c49",
+      "scenario_id": "support-0011"
+    },
+    {
+      "trace_id": "86ff8e4979368f5791cc33ed20756083",
+      "scenario_id": "support-0199"
+    },
+    {
+      "trace_id": "93d6815d8e73433cbd0646e107fd780f",
+      "scenario_id": "support-0158"
+    },
+    {
+      "trace_id": "9f15f65dcdb1a6d8102de6ed63e0ea64",
+      "scenario_id": "support-0187"
+    },
+    {
+      "trace_id": "ac619694f4445f5313b1b175a522919b",
+      "scenario_id": "support-0023"
+    },
+    {
+      "trace_id": "bbeee2b31fba5d4fbe40d8602906127d",
+      "scenario_id": "support-0028"
+    },
+    {
+      "trace_id": "c02925bc470be1a1a742934116a2e33e",
+      "scenario_id": "support-0191"
+    },
+    {
+      "trace_id": "c803d11c9e2606f18fdd780746d3523d",
+      "scenario_id": "support-0083"
+    },
+    {
+      "trace_id": "d5b343a519b720b1754352904faaaf87",
+      "scenario_id": "support-0025"
+    },
+    {
+      "trace_id": "dbd474fc7bbd2f0af1c04e9fe80f5ab1",
+      "scenario_id": "support-0130"
+    },
+    {
+      "trace_id": "dea4b8dc6361f089a7b0c46bb3b1306a",
+      "scenario_id": "support-0217"
+    },
+    {
+      "trace_id": "f1302d736f9c65ea9287c738dde8d243",
+      "scenario_id": "support-0127"
+    },
+    {
+      "trace_id": "f62e3797e6cd07347ef5f521a7d47360",
+      "scenario_id": "support-0012"
+    },
+    {
+      "trace_id": "f72dedaed1aca897977af3e7a4538413",
+      "scenario_id": "support-0176"
+    },
+    {
+      "trace_id": "f751d377d72a18813767456229a71973",
+      "scenario_id": "support-0140"
+    },
+    {
+      "trace_id": "febe7ae653751856f70e9281a6c075b2",
+      "scenario_id": "support-0148"
+    }
+  ],
+  "pass": [
+    {
+      "trace_id": "0348875670161f0fdca94c82c7c02b3c",
+      "scenario_id": "support-0057"
+    },
+    {
+      "trace_id": "054c437a547d669b77993c168ea25b06",
+      "scenario_id": "support-0136"
+    },
+    {
+      "trace_id": "0b9e682042ee4f2c141add5d21dd078f",
+      "scenario_id": "support-0101"
+    },
+    {
+      "trace_id": "135af33aa2e9648ed566747cd94d1a4a",
+      "scenario_id": "support-0102"
+    },
+    {
+      "trace_id": "1371d0d98c04ea4ba447ebddc22277d1",
+      "scenario_id": "support-0079"
+    },
+    {
+      "trace_id": "16cdef7c8d3235be3ba8348174d601d6",
+      "scenario_id": "support-0177"
+    },
+    {
+      "trace_id": "2258b98bc95851a3e80cbd38003d51be",
+      "scenario_id": "support-0156"
+    },
+    {
+      "trace_id": "2c9887707e39c6c8311f14973b200984",
+      "scenario_id": "support-0051"
+    },
+    {
+      "trace_id": "31d6c43a11053c96c2072b9e6b5d66fc",
+      "scenario_id": "support-0166"
+    },
+    {
+      "trace_id": "373c163c1485a59299042292b4b25ed4",
+      "scenario_id": "support-0058"
+    },
+    {
+      "trace_id": "375f02d8b6f851688470737f4b9ab3c0",
+      "scenario_id": "support-0208"
+    },
+    {
+      "trace_id": "639395d3b5b3142d4de24ff9924c4bae",
+      "scenario_id": "support-0048"
+    },
+    {
+      "trace_id": "648937f610c3d32c7cae1273be32e9ec",
+      "scenario_id": "support-0172"
+    },
+    {
+      "trace_id": "689a5d72dd6f9ac87442cd6ba689f8bf",
+      "scenario_id": "support-0139"
+    },
+    {
+      "trace_id": "694a64d07652531a821b68eb46c7d487",
+      "scenario_id": "support-0201"
+    },
+    {
+      "trace_id": "6b6f2ee67558515d1e547189a45a83e7",
+      "scenario_id": "support-0073"
+    },
+    {
+      "trace_id": "6bf7034abdbb6134a4ba4ebdc4e1a7bc",
+      "scenario_id": "support-0174"
+    },
+    {
+      "trace_id": "82cb60a08d584bc0ce442978e9b54a03",
+      "scenario_id": "support-0178"
+    },
+    {
+      "trace_id": "94025679c7bf730f6a0d7d501fccbc95",
+      "scenario_id": "support-0053"
+    },
+    {
+      "trace_id": "add65e4688e8b22e84d0f8f09757ef27",
+      "scenario_id": "support-0149"
+    },
+    {
+      "trace_id": "b47e23a2532a00e200e74ffd0c6f5ae4",
+      "scenario_id": "support-0128"
+    },
+    {
+      "trace_id": "bb0c4ef730f9363bde57161977001afa",
+      "scenario_id": "support-0031"
+    },
+    {
+      "trace_id": "bb84ab752c85e8ebe31461581c0e2c85",
+      "scenario_id": "support-0135"
+    },
+    {
+      "trace_id": "c858e49c8ed48c978ff2853e6a8feba9",
+      "scenario_id": "support-0094"
+    },
+    {
+      "trace_id": "cf7ca033f59b5dd2235821eb866a3bef",
+      "scenario_id": "support-0065"
+    },
+    {
+      "trace_id": "d22ab8eb13e545f74c45d6e3447b0f92",
+      "scenario_id": "support-0142"
+    },
+    {
+      "trace_id": "d7ee8f4ec203e6bbc5a0e92cfca30a74",
+      "scenario_id": "support-0209"
+    },
+    {
+      "trace_id": "d97c3833e45cd58002ee9397ac427102",
+      "scenario_id": "support-0212"
+    },
+    {
+      "trace_id": "db24e86190b11fdacd3ef15b338f0dcd",
+      "scenario_id": "support-0146"
+    },
+    {
+      "trace_id": "f8d4e0f4b274f333711d5dcd11420743",
+      "scenario_id": "support-0078"
+    }
+  ]
+}

@@ -151,7 +151,40 @@ def state_data() -> dict:
     for key in ('annotations', 'suggestions', 'judgments'):
         state[key] = [entry for entry in state[key] if entry.get('trace_id') in included]
     state['reviewed'] = {tid: value for tid, value in state['reviewed'].items() if tid in included}
+    state['judge_review'] = development_judge()
     return state
+
+
+def development_judge() -> dict:
+    """Show cached development verdicts only; never serve test predictions."""
+    mode = 'unnecessary_messages_or_details'
+    dev_ids = set(read('splits.json', {}).get(mode, {}).get('dev', []))
+    history = read(f'judges/_history_{mode}.json', {'versions': []})
+    if not history['versions']:
+        return {'mode': mode, 'judge_id': None, 'expected': len(dev_ids), 'rows': []}
+    judge_id = history['versions'][-1]['judge_id']
+    judge = read(f'judges/{judge_id}.json', {})
+    prompt_hash = judge.get('prompt_hash', '')
+    predictions = judge.get('predictions', {}).get(prompt_hash, {})
+    critiques = judge.get('critiques', {}).get(prompt_hash, {})
+    labels_path = STATE / 'hw5_labels' / f'{mode}.jsonl'
+    labels = {}
+    if labels_path.exists():
+        for line in labels_path.read_text().splitlines():
+            row = json.loads(line)
+            if not row.get('superseded_by'):
+                labels[row['trace_id']] = row['label']
+    rows = []
+    for trace_id in sorted(dev_ids & predictions.keys() & scope_ids()):
+        if trace_id not in labels:
+            continue
+        human = int(labels[trace_id])
+        predicted = int(predictions[trace_id])
+        if judge.get('label_convention') != 'pass_positive':
+            predicted = 1 - predicted
+        rows.append({'trace_id': trace_id, 'human': human, 'judge': predicted,
+                     'critique': critiques.get(trace_id, ''), 'disagreement': human != predicted})
+    return {'mode': mode, 'judge_id': judge_id, 'expected': len(dev_ids), 'rows': rows}
 
 
 def data() -> dict:
