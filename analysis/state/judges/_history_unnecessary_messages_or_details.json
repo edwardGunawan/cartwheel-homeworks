@@ -1,0 +1,60 @@
+{
+  "versions": [
+    {
+      "judge_id": "unnecessary_messages_or_details-v0",
+      "prompt_hash": "d31bdbb259a1"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v1",
+      "prompt_hash": "14f767ca9790"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v2",
+      "prompt_hash": "42f3252a67f0"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v3",
+      "prompt_hash": "a3949c1e365d"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v4",
+      "prompt_hash": "9fc8d45ada97"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v5",
+      "prompt_hash": "58e327d604aa"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v6",
+      "prompt_hash": "1c0cd9dbcc60"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v7",
+      "prompt_hash": "ba8aa1fe3800"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v8",
+      "prompt_hash": "05942122a952"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v9",
+      "prompt_hash": "f878489b726d"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v10",
+      "prompt_hash": "70e5bd41760a"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v11",
+      "prompt_hash": "7f8388742400"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v12",
+      "prompt_hash": "70778f1a2b3e"
+    },
+    {
+      "judge_id": "unnecessary_messages_or_details-v13",
+      "prompt_hash": "f01293cd83e3"
+    }
+  ]
+}

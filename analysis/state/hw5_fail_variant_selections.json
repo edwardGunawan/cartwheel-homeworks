@@ -1,0 +1,14 @@
+{
+  "mode": "unnecessary_messages_or_details",
+  "approved_fail_variant_groups": [
+    {"keep": "support-0217", "exclude": ["support-0219", "support-0220", "support-0221", "support-0218"]},
+    {"keep": "support-0003", "exclude": ["support-0006", "support-0009"]},
+    {"keep": "support-0005", "exclude": ["support-0008"]},
+    {"keep": "support-0011", "exclude": ["support-0017"]},
+    {"keep": "support-0012", "exclude": ["support-0015"]},
+    {"keep": "support-0026", "exclude": ["support-0029"]},
+    {"keep": "support-0068", "exclude": ["support-0224"]},
+    {"keep": "support-0157", "exclude": ["support-0163"]},
+    {"keep": "support-0202", "exclude": ["support-0205"]}
+  ]
+}

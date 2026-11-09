@@ -1,0 +1,29 @@
+{
+  "judge_id": "unnecessary_messages_or_details-v1",
+  "split": "dev",
+  "tpr": 0.5385,
+  "tnr": 0.9091,
+  "tpr_interval": [
+    0.2914,
+    0.7679
+  ],
+  "tnr_interval": [
+    0.6226,
+    0.9838
+  ],
+  "agreement": 0.7083,
+  "tp": 7,
+  "fn": 6,
+  "tn": 10,
+  "fp": 1,
+  "n": 24,
+  "disagreements": [
+    "05124fbea627c902626a95a9ec9c0fd4",
+    "135af33aa2e9648ed566747cd94d1a4a",
+    "16cdef7c8d3235be3ba8348174d601d6",
+    "31d6c43a11053c96c2072b9e6b5d66fc",
+    "375f02d8b6f851688470737f4b9ab3c0",
+    "6bf7034abdbb6134a4ba4ebdc4e1a7bc",
+    "add65e4688e8b22e84d0f8f09757ef27"
+  ]
+}
