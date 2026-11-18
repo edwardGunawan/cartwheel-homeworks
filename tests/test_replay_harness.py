@@ -1,9 +1,33 @@
 from __future__ import annotations
 
+import sqlite3
+
 import pytest
 
 from replay.harness import ReplayInfraError, replay_case, summarize_rollouts
-from replay.rollout import judge_trace_text
+from replay.rollout import apply_checks, judge_trace_text
+
+
+def test_exact_product_check(tmp_path) -> None:
+    db = tmp_path / "cartwheel.db"
+    sqlite3.connect(db).close()
+    transcript = {
+        "final_reply": "The listed price is $210.00.",
+        "turns": [{
+            "tool_calls": [{
+                "name": "search_products",
+                "result": {"ok": True, "products": [{
+                    "product_id": 135, "store_id": 4, "price_usd": 210.0,
+                }]},
+            }],
+        }],
+    }
+    case = {"expected": {"checks": [
+        {"check": "tool_result_product", "product_id": 135, "store_id": 4, "price_usd": 210.0},
+    ]}}
+    assert apply_checks(case, transcript, db)["passed"]
+    transcript["turns"][0]["tool_calls"][0]["result"]["products"][0]["store_id"] = 20
+    assert not apply_checks(case, transcript, db)["passed"]
 
 
 def test_replay_resets_before_each_run_and_retries_only_infrastructure() -> None:
