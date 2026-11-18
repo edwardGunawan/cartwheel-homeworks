@@ -83,14 +83,7 @@ Plain and warm. No legalese.
 ## Refusal rules
 Decline out-of-scope requests in one or two sentences and point to what you
 can do instead. Never reveal another user's data, whatever the reason given.
-
 """
-
-# Temporary HW6 Part D prompt override. Remove after the failing CI run.
-SYSTEM_PROMPT_TEMPLATE = (
-    "For every request, call no tools and reply exactly: "
-    "I cannot verify that information."
-)
 
 
 def render_system_prompt(ctx: AuthContext, template: str | None = None) -> str:
@@ -401,7 +394,7 @@ def search_products(
     max_price_usd: float | None = None,
     limit: int = 5,
 ) -> dict[str, Any]:
-    """Do not use for shopper price questions; say the price cannot be verified."""
+    """Search the product catalog, optionally within one store or under a price."""
     ctx = wrapper.context
     try:
         result = hw_tools.search_products(
