@@ -1,30 +1,54 @@
 # PR title
 
-Complete HW5 judge for unnecessary messages or details
+HW5: Test a judge for unnecessary support details
 
-# Summary
+# PR description
 
-- Reuse the HW4 review interface and human evidence comments for `unnecessary_messages_or_details`. Export 60 labeled conversations with the original trace evidence and a fixed 12/24/24 training, development, and test split. The selected set contains 30 human Pass and 30 human Fail labels.
-- Add the judge input, development, and test runners. DocETL applies the saved `gpt-4o-mini` prompt, caches verdicts and critiques, and the Cartwheel helpers compute confusion counts, TPR, TNR, and 95% Wilson intervals. The interface shows development disagreements beside human labels without exposing test predictions during prompt development.
-- Preserve every evaluated prompt and judge record, the prompt iteration log, development reviews, the archived initial v13 run, and the one held-out v13 test. The student selected and froze v13 before the test.
+## Summary
 
-# Results
+I built one judge for the `unnecessary_messages_or_details` failure mode.
+I used 60 conversations with human labels: 30 Pass and 30 Fail.
+I kept the same data split during the work: 12 training, 24 development, and 24 test conversations.
+This PR includes the labels, input traces, prompts, judge results, and reports.
 
-Pass is the positive class. The final development batch used 13 human Pass and 11 human Fail traces. The held-out test used 12 of each.
+## Prompt changes
 
-| Split | TP / FN / TN / FP | TPR (95% Wilson CI) | TNR (95% Wilson CI) |
+- The first prompt found most Fail cases. It also marked many useful replies as Fail.
+- I changed the rules to keep short explanations of blocked lookups and access limits. The rules also keep required policy IDs and useful next steps.
+- These changes improved TPR. They also let some unrelated order details pass.
+- I then made the relevance rule more exact. An extra fact must help answer the current question, explain a decision, or give a useful next step.
+- In v13, a reply can state an access limit again when the user challenges that limit. I used only training cases as prompt examples.
+
+## Development result
+
+Pass is the positive class. TPR measures correct Pass results. TNR measures correct Fail results.
+
+| Set | Human Pass / Fail | TPR and 95% Wilson interval | TNR and 95% Wilson interval |
 | --- | --- | --- | --- |
-| Development, v13 | 12 / 1 / 6 / 5 | 92.3% (66.7–98.6%) | 54.5% (28.0–78.7%) |
-| Held-out test, v13 | 11 / 1 / 3 / 9 | 91.7% (64.6–98.5%) | 25.0% (8.9–53.2%) |
+| Development, v13 | 13 / 11 | 92.3% (66.7–98.6%) | 54.5% (28.0–78.7%) |
+| Test, frozen v13 | 12 / 12 | 91.7% (64.6–98.5%) | 25.0% (8.9–53.2%) |
 
-The judge correctly accepts most human Pass cases, but on test it misses 9 of 12 human Fail cases. Its critiques often treat same-order facts or a possible future need as relevant even when those details do not serve the current request. The student would not fully trust the judge at this TNR and considers roughly 40–50% TNR a personal minimum for usefulness, not a course requirement. With only 12 Fail test cases, one changed verdict shifts TNR by about 8.3 percentage points.
+In development, v13 agreed with 12 of 13 human Pass labels and 6 of 11 human Fail labels.
+These results met my preferred balance, so I froze v13.
+The small number of cases gave wide confidence intervals. Some individual results also changed when I ran v13 again.
 
-# Checks
+## Test result and use decision
 
-- Offline: review-app and replay-harness tests passed (the one HTTP test passed on rerun with local loopback access); submission split and frozen-judge checks passed; fixed split, label mapping, cached coverage, and test metrics were verified.
-- Live: `gpt-4o-mini` judged the development batches and one held-out 24-trace test batch through DocETL. No prompt, human label, or split was changed after seeing test results.
+I ran frozen v13 once on the test set.
+The judge agreed with 11 of 12 human Pass labels. It agreed with only 3 of 12 human Fail labels.
+Thus, the judge missed nine Fail cases.
+The judge often treated facts from the same order as useful. It also accepted details that might help with a future question.
+These details did not always help with the current question.
 
-# Course notes
+I do not fully trust this judge at a TNR of 25%.
+I wanted a TNR of about 40% to 50% before I would consider it useful. This is my goal, not a course rule.
+The test set is small. One changed result among the 12 human Fail cases changes TNR by about 8.3 percentage points.
 
-- The handout asks for at most two prompt revisions. Versions v3–v13 are documented exploratory iterations beyond that limit; the deviation is visible in the iteration log.
-- The required up-to-five-minute video is for the student to record. It is not part of this commit.
+## Checks and course note
+
+The offline checks for the review interface, data split, judge status, and saved results passed.
+I used `gpt-4o-mini` with DocETL for the live judge runs.
+I did not change the prompt, human labels, or data split after the test.
+
+The handout permits two prompt revisions. I made more versions to study the boundary. The iteration log records this extra work.
+I will record the required video separately.

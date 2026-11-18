@@ -267,6 +267,24 @@ def _one_check(
         ok = any(c["name"] == check["name"] for c in calls)
         return (ok, f"tool {check['name']} called")
 
+    if kind == "tool_result_product":
+        found = any(
+            call["name"] == "search_products"
+            and isinstance(call["result"], dict)
+            and call["result"].get("ok") is True
+            and any(
+                product.get("product_id") == check["product_id"]
+                and product.get("store_id") == check["store_id"]
+                and product.get("price_usd") == check["price_usd"]
+                for product in call["result"].get("products", [])
+            )
+            for call in _all_tool_calls(transcript, check.get("turn"))
+        )
+        return (
+            found,
+            f"search returned product #{check['product_id']} at ${check['price_usd']:.2f}",
+        )
+
     if kind == "tool_result_permission_denied":
         for call in _all_tool_calls(transcript, None):
             result = call["result"]

@@ -8,7 +8,7 @@ import pytest
 
 from harbor_adapter.analysis import analyze_capability_job
 from harbor_adapter.export import _provider_key, export_tasks
-from harbor_adapter.summary import summarize_job
+from harbor_adapter.summary import load_trial_results, summarize_job
 
 
 def _write_cases(path: Path, cases: list[dict]) -> None:
@@ -20,6 +20,19 @@ def test_provider_key_follows_the_selected_model() -> None:
     assert _provider_key("o4-mini") == "OPENAI_API_KEY"
     assert _provider_key("anthropic/example") == "ANTHROPIC_API_KEY"
     assert _provider_key("openrouter/vendor-model") == "OPENROUTER_API_KEY"
+
+
+def test_load_trial_results_from_harbor_trial_directories(tmp_path: Path) -> None:
+    (tmp_path / "result.json").write_text(json.dumps({"n_total_trials": 2, "stats": {}}))
+    for name, started_at in (("later", "2026-01-02"), ("earlier", "2026-01-01")):
+        trial = tmp_path / name
+        trial.mkdir()
+        (trial / "result.json").write_text(
+            json.dumps({"trial_name": name, "started_at": started_at})
+        )
+    trials, order = load_trial_results(tmp_path)
+    assert [trial["trial_name"] for trial in trials] == ["earlier", "later"]
+    assert order == "trial started_at order"
 
 
 def test_export_preserves_cartwheel_formats_and_builds_harbor_task(
