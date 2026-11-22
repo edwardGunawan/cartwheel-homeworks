@@ -18,31 +18,9 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from analysis.helpers.scale import _decode_judge_rows as _decode_hw5_rows
 from analysis.helpers.tools import _load_judge, _test_labels_and_preds
 from agent.agent import LITELLM_COURSE_MODELS
-
-
-def _decode_judge_rows(
-    rows: list[dict[str, Any]], trace_ids: list[str]
-) -> dict[str, int]:
-    """Decode the Pass or Fail records used by Homework 5."""
-    predictions: dict[str, int] = {}
-    expected = set(trace_ids)
-    for row in rows:
-        trace_id = str(row.get("trace_id", ""))
-        if trace_id not in expected or trace_id in predictions:
-            raise ValueError("judge returned an unexpected or duplicate trace id")
-        critique = row.get("critique")
-        if not isinstance(critique, str) or not critique.strip():
-            raise ValueError(f"judge result for {trace_id} needs a critique")
-        verdict = str(row.get("result", "")).strip().lower().rstrip(".")
-        if verdict not in {"pass", "passed", "fail", "failed"}:
-            verdict = "fail"
-        predictions[trace_id] = 1 if verdict in {"pass", "passed"} else 0
-    missing = expected - set(predictions)
-    if missing:
-        raise ValueError(f"judge returned no result for {sorted(missing)[:5]}")
-    return predictions
 
 
 def load_monitoring_judge(judge_id: str) -> dict[str, Any]:
@@ -127,5 +105,5 @@ def judge_sample(
         pipeline.run()
         rows = json.loads(output_path.read_text(encoding="utf-8"))
 
-    pass_positive = _decode_judge_rows(rows, trace_ids)
+    pass_positive = _decode_hw5_rows(rows, trace_ids)
     return {trace_id: 1 - prediction for trace_id, prediction in pass_positive.items()}

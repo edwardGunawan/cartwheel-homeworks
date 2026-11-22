@@ -1,0 +1,16 @@
+{
+  "case_id": "e-011",
+  "intentional_regression": {
+    "url": "https://github.com/edwardGunawan/cartwheel-homeworks/actions/runs/44276968560",
+    "passes": 0,
+    "attempts": 5,
+    "ci_result": "failure"
+  },
+  "after_revert": {
+    "url": "https://github.com/edwardGunawan/cartwheel-homeworks/actions/runs/44280973383",
+    "passes": 5,
+    "attempts": 5,
+    "ci_result": "success"
+  },
+  "explanation": "The temporary system prompt and search_products description directed Cartwheel to avoid lookup and answer that it could not verify the information. The verifier failed e-011 in all five trials. Reverting both prompt changes restored the original behavior, and e-011 passed all five trials."
+}

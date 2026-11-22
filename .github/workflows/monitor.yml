@@ -1,0 +1,114 @@
+name: Cartwheel monitor
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: cartwheel-monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    # Langfuse is hosted on localhost, so this runner must be on that host.
+    runs-on: [self-hosted, cartwheel-monitor]
+    outputs:
+      as_of: ${{ steps.count.outputs.as_of }}
+      judge_calls: ${{ steps.count.outputs.judge_calls }}
+    env:
+      LANGFUSE_HOST: ${{ vars.LANGFUSE_HOST }}
+      LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+      LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+      PYTHONPATH: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - run: |
+          mkdir -p monitoring/results
+          printf '{"status":"not_started"}\n' > monitoring/results/run-status.json
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen
+      - name: Count conversations in the previous 24 hours
+        run: |
+          if ! uv run --no-sync python -m monitoring.run --last-hours 24 --plan > monitoring/results/command.log 2>&1; then
+            rm -f monitoring/results/command.log
+            echo 'Monitor plan failed; see the saved status artifact.'
+            exit 1
+          fi
+          rm -f monitoring/results/command.log
+      - name: Show the paid-run plan
+        id: count
+        run: |
+          uv run --no-sync python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          plan = json.loads(Path('monitoring/results/run-status.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f"as_of={plan['window_to']}\n")
+              output.write(f"judge_calls={plan['judge_calls']}\n")
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write(f"Frozen judge: gpt-4o-mini. Agent runs: 0. Judge calls: {plan['judge_calls']}.\n")
+              summary.write(f"Window: {plan['window_from']} to {plan['window_to']} UTC.\n")
+          PY
+      - name: Upload the plan, including zero-count output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cartwheel-monitor-plan-${{ github.run_id }}
+          path: |
+            monitoring/results/
+            monitoring/history.jsonl
+            monitoring/prevalence.svg
+          if-no-files-found: warn
+
+  judge:
+    needs: plan
+    if: needs.plan.outputs.judge_calls != '0'
+    # Configure this environment with a required reviewer before enabling the workflow.
+    environment: monitor-paid-run
+    runs-on: [self-hosted, cartwheel-monitor]
+    env:
+      LANGFUSE_HOST: ${{ vars.LANGFUSE_HOST }}
+      LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+      LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      PYTHONPATH: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - run: |
+          mkdir -p monitoring/results
+          printf '{"status":"not_started"}\n' > monitoring/results/run-status.json
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen
+      - name: Judge the approved window
+        run: |
+          if ! uv run --no-sync python -m monitoring.run --last-hours 24 \
+            --as-of '${{ needs.plan.outputs.as_of }}' \
+            --expected-judge-calls '${{ needs.plan.outputs.judge_calls }}' \
+            > monitoring/results/command.log 2>&1; then
+            rm -f monitoring/results/command.log
+            echo 'Monitor failed; see the saved status artifact.'
+            exit 1
+          fi
+          rm -f monitoring/results/command.log
+      - name: Upload monitoring output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cartwheel-monitor-judged-${{ github.run_id }}
+          path: |
+            monitoring/results/
+            monitoring/history.jsonl
+            monitoring/prevalence.svg
+          if-no-files-found: warn

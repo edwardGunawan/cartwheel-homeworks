@@ -1,0 +1,117 @@
+{
+  "case_id": "e-005",
+  "model": "gpt-4o-mini",
+  "trial_order": "trial started_at order",
+  "trials": [
+    {
+      "trial_name": "e-005__HmYndB7",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__9qNsWzw",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__gmCwRzD",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__gKnw5Rt",
+      "passed": 1
+    },
+    {
+      "trial_name": "e-005__YigpTD8",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__3sSSdqF",
+      "passed": 1
+    },
+    {
+      "trial_name": "e-005__qtFABd3",
+      "passed": 1
+    },
+    {
+      "trial_name": "e-005__FXJeaka",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__GsozNAm",
+      "passed": 1
+    },
+    {
+      "trial_name": "e-005__f3Dsc3j",
+      "passed": 1
+    },
+    {
+      "trial_name": "e-005__cqnBBjM",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__SFrwmXB",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__VGbyDNB",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__boH8R2U",
+      "passed": 0
+    },
+    {
+      "trial_name": "e-005__2TpV7dN",
+      "passed": 0
+    }
+  ],
+  "rewards": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "n": 15,
+  "successes": 5,
+  "comparisons": [
+    {
+      "n": 5,
+      "successes": 1,
+      "pass_at_k": {
+        "1": 0.19999999999999996,
+        "3": 0.6,
+        "5": 1.0
+      }
+    },
+    {
+      "n": 10,
+      "successes": 5,
+      "pass_at_k": {
+        "1": 0.5,
+        "3": 0.9166666666666666,
+        "5": 0.996031746031746
+      }
+    },
+    {
+      "n": 15,
+      "successes": 5,
+      "pass_at_k": {
+        "1": 0.33333333333333337,
+        "3": 0.7362637362637363,
+        "5": 0.916083916083916,
+        "10": 0.9996669996669997,
+        "15": 1.0
+      }
+    }
+  ]
+}
