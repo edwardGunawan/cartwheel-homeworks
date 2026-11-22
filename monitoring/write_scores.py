@@ -70,8 +70,36 @@ def build_score_records(
         A list of score record dicts with keys: score_id, name, value,
         data_type, trace_id, comment (comment is None for verdicts).
     """
-    ### YOUR CODE HERE (hw7)
-    raise NotImplementedError("hw7: implement build_score_records")
+    records = []
+    for name, kind, verdicts in (
+        (f"{mode}_verdict", "verdict", random_verdicts),
+        (f"{mode}_risk_verdict", "risk_verdict", risk_verdicts),
+    ):
+        for trace_id, verdict in verdicts.items():
+            records.append(
+                {
+                    "score_id": _stable_id(mode, kind, trace_id),
+                    "name": name,
+                    "value": float(verdict),
+                    "data_type": "NUMERIC",
+                    "trace_id": trace_id,
+                    "comment": None,
+                }
+            )
+    records.append(
+        {
+            "score_id": _stable_id(mode, "prevalence", batch_label),
+            "name": f"{mode}_corrected_prevalence",
+            "value": estimate["corrected"],
+            "data_type": "NUMERIC",
+            "trace_id": None,
+            "comment": (
+                f"95% CI {estimate['ci_low']}-{estimate['ci_high']}, "
+                f"raw {estimate['raw']}, n={estimate['n_sample']}"
+            ),
+        }
+    )
+    return records
 
 
 # ---------------------------------------------------------------------------
@@ -105,6 +133,9 @@ def post_scores(records: list[dict[str, Any]]) -> int:
         }
         if record.get("trace_id") is not None:
             kwargs["trace_id"] = record["trace_id"]
+        else:
+            # Langfuse requires a trace or session target; this stable session identifies the batch.
+            kwargs["session_id"] = record["score_id"]
         if record.get("comment"):
             kwargs["comment"] = record["comment"]
         client.create_score(**kwargs)
